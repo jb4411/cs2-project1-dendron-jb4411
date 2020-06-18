@@ -23,7 +23,7 @@ import dendron.Errors;
  * THIS CLASS IS INCOMPLETE. The student must add code to it.
  *
  * @author James Heliotis
- * @author YOUR NAME HERE
+ * @author Jesse Burdick-Pless jb4411@g.rit.edu
  */
 public class Machine {
 
@@ -148,7 +148,202 @@ public class Machine {
         }
     }
 
-    //
-    // ENTER YOUR CODE FOR THE OTHER INSTRUCTION CLASSES HERE.
-    //
+    /**
+     * The DIVIDE instruction
+     */
+    public static class Divide implements Instruction {
+        /**
+         * Run the microsteps for the DIVIDE instruction.
+         */
+        @Override
+        public void execute() {
+            int op2 = stack.pop();
+            int op1 = stack.pop();
+            stack.push((int) op1 / op2 );
+        }
+
+        /**
+         * Show the DIVIDE instruction as plain text.
+         * @return "DIV"
+         */
+        @Override
+        public String toString() {
+            return "DIV";
+        }
+    }
+
+    /**
+     * The LOAD instruction
+     */
+    public static class Load implements Instruction {
+        /** stores name of target variable */
+        private String name;
+
+        /**
+         * Create a LOAD instruction
+         * @param ident the name of the target variable
+         */
+        public Load( String ident ) {
+            this.name = ident;
+        }
+
+        /**
+         * Run the microsteps for the LOAD instruction.
+         */
+        @Override
+        public void execute() {
+            stack.push(table.get(this.name));
+        }
+
+        /**
+         * Show the LOAD instruction as plain text.
+         * @return "LOAD" followed by the target variable name
+         */
+        @Override
+        public String toString() {
+            return "LOAD " + this.name;
+        }
+    }
+
+    /**
+     * The MULTIPLY instruction
+     */
+    public static class Multiply implements Instruction {
+        /**
+         * Run the microsteps for the MULTIPLY instruction.
+         */
+        @Override
+        public void execute() {
+            int op2 = stack.pop();
+            int op1 = stack.pop();
+            stack.push( op1 * op2 );
+        }
+
+        /**
+         * Show the MULTIPLY instruction as plain text.
+         * @return "MUL"
+         */
+        @Override
+        public String toString() {
+            return "MUL";
+        }
+    }
+
+    /**
+     * The NEGATE instruction
+     */
+    public static class Negate implements  Instruction {
+        /**
+         * Run the microsteps for the NEGATE instruction.
+         */
+        @Override
+        public void execute() {
+            int op = stack.pop();
+            stack.push(-op);
+        }
+
+        /**
+         * Show the NEGATE instruction as plain text.
+         * @return "NEG"
+         */
+        @Override
+        public String toString() {
+            return "NEG";
+        }
+    }
+
+    /**
+     * The PRINT instruction
+     */
+    public static class Print implements Instruction {
+        /**
+         * Output "*** " followed by the value popped from the stack.
+         */
+        @Override
+        public void execute() {
+            int op = stack.pop();
+            System.out.println("*** " + op + " ");
+        }
+    }
+
+    /**
+     * The PUSHCONST instruction
+     */
+    public static class PushConst implements Instruction {
+        /** stores the value of the constant */
+        private int constant;
+
+        /**
+         * Create a PUSHCONST instruction
+         * @param constant the constant to be added to the stack
+         */
+        public PushConst(int constant) {
+            this.constant = constant;
+        }
+
+        /**
+         * Run the microsteps for the PUSHCONST instruction.
+         */
+        @Override
+        public void execute() {
+            stack.push(this.constant);
+        }
+
+        /**
+         * Show the PUSHCONST instruction as plain text.
+         * @return "PUSH" followed by the constant
+         */
+        @Override
+        public String toString() {
+            return "PUSH " + this.constant;
+        }
+    }
+
+    /**
+     * The SQUAREROOT instruction
+     */
+    public static class SquareRoot implements Instruction {
+        /**
+         * Run the microsteps for the SQUAREROOT instruction.
+         */
+        @Override
+        public void execute() {
+            int op = stack.pop();
+            stack.push((int) Math.sqrt(op));
+        }
+
+        /**
+         * Show the SQUAREROOT instruction as plain text.
+         * @return "SQRT"
+         */
+        @Override
+        public String toString() {
+            return "SQRT";
+        }
+    }
+
+
+    /**
+     * The SUBTRACT instruction
+     */
+    public static class Subtract implements Instruction {
+        /**
+         * Run the microsteps for the SUBTRACT instruction.
+         */
+        @Override
+        public void execute() {
+            int op2 = stack.pop();
+            int op1 = stack.pop();
+            stack.push(op1 - op2 );
+        }
+
+        /**
+         * Show the SUBTRACT instruction as plain text.
+         * @return "SUB"
+         */
+        @Override
+        public String toString() {
+            return "SUB";
+        }
+    }
 }
