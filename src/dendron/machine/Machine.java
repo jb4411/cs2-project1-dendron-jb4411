@@ -322,7 +322,6 @@ public class Machine {
         }
     }
 
-
     /**
      * The SUBTRACT instruction
      */
