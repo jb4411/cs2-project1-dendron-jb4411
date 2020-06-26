@@ -16,7 +16,7 @@ import java.util.Map;
  *
  * THIS CLASS IS UNIMPLEMENTED. All methods are stubbed out.
  *
- * @author YOUR NAME HERE
+ * @author Jesse Burdick-Pless jb4411@g.rit.edu
  */
 public class ParseTree {
 
