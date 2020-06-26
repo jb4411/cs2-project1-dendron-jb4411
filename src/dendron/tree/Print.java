@@ -5,6 +5,12 @@ import dendron.machine.Machine;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * A node that represents the displaying of the value of an expression on the
+ * console
+ *
+ * @author Jesse Burdick-Pless jb4411@g.rit.edu
+ */
 public class Print implements ActionNode {
     /**
      * Set up a Print node.

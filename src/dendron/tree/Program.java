@@ -5,6 +5,12 @@ import dendron.machine.Machine;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * An ActionNode used to represent a sequence of other ActionNodes. The main
+ * use of this node type is to be the root of the entire program tree.
+ *
+ * @author Jesse Burdick-Pless jb4411@g.rit.edu
+ */
 public class Program implements ActionNode, DendronNode {
     /**
      * Initialize this instance as an empty sequence of ActionNode children.

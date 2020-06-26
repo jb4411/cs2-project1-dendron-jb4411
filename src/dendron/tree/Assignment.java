@@ -5,6 +5,12 @@ import dendron.machine.Machine;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * An ActionNode that represents the assignment of the value of an expression
+ * to a variable.
+ *
+ * @author Jesse Burdick-Pless jb4411@g.rit.edu
+ */
 public class Assignment implements ActionNode {
     private String ident;
     private ExpressionNode rhs;
@@ -33,10 +39,22 @@ public class Assignment implements ActionNode {
 
     }
 
+    /**
+     * Show this assignment on standard output as a variable followed by an
+     * assignment arrow (":=") followed by the infix form of the RHS expression.
+     */
     @Override
     public void infixDisplay() {
     }
 
+    /**
+     * This method returns a STORE instruction for the variable in question
+     * preceded by the code emitted by the RHS node that eventually pushes the
+     * value of the expression onto the stack.
+     *
+     * @return a list of instructions ending in one that stores the top value
+     * on the stack to this node's variable
+     */
     @Override
     public List<Machine.Instruction> emit() {
         return null;
