@@ -23,6 +23,8 @@ import java.util.Scanner;
 public class DendronTest {
 
     private static List< List< String > > programs = Arrays.asList(
+            new LinkedList<>( Arrays.asList( "@", "1") )
+            /*
             new LinkedList<>( Arrays.asList( ":=", "x", "55" ) ),
             new LinkedList<>( Arrays.asList(
                     ":=", "able", "77",
@@ -62,6 +64,7 @@ public class DendronTest {
             new LinkedList<>( Arrays.asList( ":=", "x", "9", ":=" ) ),
             new LinkedList<>( Arrays.asList( ":=", "y" ) ),
             new LinkedList<>( Arrays.asList( ":=", "x", "9", "@" ) )
+            */
     );
 
     /*

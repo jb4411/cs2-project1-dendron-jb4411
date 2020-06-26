@@ -17,6 +17,9 @@ public class UnaryOperation implements ExpressionNode {
     /** Container of all legal unary operators, for use by parsers */
     public static final Collection<String> OPERATORS = new ArrayList<>(Arrays.asList(NEG,SQRT));
 
+    private String operator;
+    private ExpressionNode expr;
+
     /**
      * Create a new UnaryOperation node.
      *
@@ -25,7 +28,8 @@ public class UnaryOperation implements ExpressionNode {
      * @rit.pre OPERATORS.contains( operator ), expr != null
      */
     public UnaryOperation(String operator, ExpressionNode expr) {
-
+        this.operator = operator;
+        this.expr = expr;
     }
 
     /**

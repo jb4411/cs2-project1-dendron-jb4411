@@ -21,6 +21,10 @@ public class BinaryOperation implements ExpressionNode {
     /** Container of all legal binary operators, for use by parsers */
     public static final Collection<String> OPERATORS = new ArrayList<>(Arrays.asList(ADD,SUB,MUL,DIV));
 
+    private String operator;
+    private ExpressionNode leftChild;
+    private ExpressionNode rightChild;
+
     /**
      * Create a new BinaryOperation node.
      *
@@ -30,7 +34,9 @@ public class BinaryOperation implements ExpressionNode {
      * @rit.pre OPERATORS.contains( operator ), leftChild != null, rightChild != null
      */
     public BinaryOperation(String operator, ExpressionNode leftChild, ExpressionNode rightChild) {
-
+        this.operator = operator;
+        this.leftChild = leftChild;
+        this.rightChild = rightChild;
     }
 
     /**

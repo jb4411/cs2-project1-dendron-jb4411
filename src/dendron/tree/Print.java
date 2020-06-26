@@ -12,13 +12,14 @@ import java.util.Map;
  * @author Jesse Burdick-Pless jb4411@g.rit.edu
  */
 public class Print implements ActionNode {
+    private ExpressionNode printee;
     /**
      * Set up a Print node.
      *
      * @param printee the expression to be evaluated and printed.
      */
     public Print(ExpressionNode printee) {
-
+        this.printee = printee;
     }
 
     /**
