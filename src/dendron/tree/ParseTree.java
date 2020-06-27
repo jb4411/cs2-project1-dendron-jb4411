@@ -10,9 +10,9 @@ import dendron.tree.ExpressionNode;
 import dendron.tree.UnaryOperation;
 import dendron.tree.BinaryOperation;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 /**
  * Operations that are done on a Dendron code parse tree.
@@ -22,7 +22,9 @@ import java.util.stream.Collectors;
  * @author Jesse Burdick-Pless jb4411@g.rit.edu
  */
 public class ParseTree {
-    private DendronNode root;
+    private Program root;
+    private Map<String,Integer> symTab;
+
     /**
      * Parse the entire list of program tokens. The program is a
      * sequence of actions (statements), each of which modifies something
@@ -31,7 +33,11 @@ public class ParseTree {
      * @param program the token list (Strings)
      */
     public ParseTree( List< String > program ) {
-        this.root = parseAction(program);
+        this.root = new Program();
+        this.symTab = new HashMap<>();
+        while (program.size() > 0) {
+            this.root.addAction(parseAction(program));
+        }
     }
 
     /**
@@ -44,7 +50,7 @@ public class ParseTree {
         ActionNode result;
         String currentToken = program.remove(0);
         if (currentToken.equals(":=")) {
-            result = new Assignment(currentToken,parseExpr(program));
+            result = new Assignment(program.remove(0),parseExpr(program));
         } else {
             result = new Print(parseExpr(program));
         }
@@ -81,6 +87,7 @@ public class ParseTree {
      * @see ActionNode#infixDisplay()
      */
     public void displayProgram() {
+        this.root.infixDisplay();
     }
 
     /**
@@ -88,6 +95,7 @@ public class ParseTree {
      * @see ActionNode#execute(Map)
      */
     public void interpret() {
+        this.root.execute(symTab);
     }
 
     /**

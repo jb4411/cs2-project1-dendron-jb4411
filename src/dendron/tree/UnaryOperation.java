@@ -41,7 +41,13 @@ public class UnaryOperation implements ExpressionNode {
      */
     @Override
     public int evaluate(Map<String, Integer> symTab) {
-        return 0;
+        int result;
+        if (this.operator.equals(NEG)) {
+            result = -1*this.expr.evaluate(symTab);
+        } else {
+            result = (int) Math.sqrt((double) this.expr.evaluate(symTab));
+        }
+        return result;
     }
 
     /**
@@ -50,7 +56,8 @@ public class UnaryOperation implements ExpressionNode {
      */
     @Override
     public void infixDisplay() {
-
+        System.out.print(operator);
+        this.expr.infixDisplay();
     }
 
     /**

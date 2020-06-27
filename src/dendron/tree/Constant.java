@@ -37,7 +37,7 @@ public class Constant implements ExpressionNode {
      */
     @Override
     public void infixDisplay() {
-
+        System.out.print(this.value);
     }
 
     /**

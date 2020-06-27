@@ -2,6 +2,8 @@ package dendron.tree;
 
 import dendron.machine.Machine;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -12,11 +14,13 @@ import java.util.Map;
  * @author Jesse Burdick-Pless jb4411@g.rit.edu
  */
 public class Program implements ActionNode, DendronNode {
+    LinkedList<ActionNode> programs;
+
     /**
      * Initialize this instance as an empty sequence of ActionNode children.
      */
     public Program() {
-
+        this.programs = new LinkedList<>();
     }
 
     /**
@@ -25,7 +29,7 @@ public class Program implements ActionNode, DendronNode {
      * @param newNode the node representing the action that will execute last
      */
     public void addAction(ActionNode newNode) {
-
+        this.programs.add(newNode);
     }
 
     /**
@@ -34,7 +38,14 @@ public class Program implements ActionNode, DendronNode {
      * @param symTab the table of variable values
      */
     public void execute(Map<String,Integer> symTab) {
-
+        LinkedList<ActionNode> temp = new LinkedList<>();
+        ActionNode current;
+        while (!this.programs.isEmpty()) {
+            current = this.programs.removeFirst();
+            temp.add(current);
+            current.execute(symTab);
+        }
+        this.programs = temp;
     }
 
     /**
@@ -43,7 +54,16 @@ public class Program implements ActionNode, DendronNode {
      */
     @Override
     public void infixDisplay() {
+        LinkedList<ActionNode> temp = new LinkedList<>();
+        ActionNode current;
+        while (!this.programs.isEmpty()) {
+            current = this.programs.removeFirst();
+            temp.add(current);
+            current.infixDisplay();
+            System.out.print("\n");
 
+        }
+        this.programs = temp;
     }
 
     /**

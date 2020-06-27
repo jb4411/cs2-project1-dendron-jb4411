@@ -48,7 +48,18 @@ public class BinaryOperation implements ExpressionNode {
      */
     @Override
     public int evaluate(Map<String, Integer> symTab) {
-        return 0;
+        int result;
+        if (this.operator.equals(ADD)) {
+            result = this.leftChild.evaluate(symTab) + this.rightChild.evaluate(symTab);
+        } else if (this.operator.equals(SUB)) {
+            result = this.leftChild.evaluate(symTab) - this.rightChild.evaluate(symTab);
+        } else if (this.operator.equals(MUL)) {
+            result = this.leftChild.evaluate(symTab) * this.rightChild.evaluate(symTab);
+        } else {
+            result = this.leftChild.evaluate(symTab) * this.rightChild.evaluate(symTab);
+        }
+
+        return result;
     }
 
     /**
@@ -58,7 +69,9 @@ public class BinaryOperation implements ExpressionNode {
      */
     @Override
     public void infixDisplay() {
-
+        this.leftChild.infixDisplay();
+        System.out.print(this.operator);
+        this.rightChild.infixDisplay();
     }
 
     /**

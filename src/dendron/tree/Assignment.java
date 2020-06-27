@@ -36,7 +36,8 @@ public class Assignment implements ActionNode {
      */
     @Override
     public void execute(Map<String, Integer> symTab) {
-
+        int result = this.rhs.evaluate(symTab);
+        symTab.put(this.ident,result);
     }
 
     /**
@@ -45,6 +46,9 @@ public class Assignment implements ActionNode {
      */
     @Override
     public void infixDisplay() {
+        System.out.print(this.ident);
+        System.out.print(" := ");
+        this.rhs.infixDisplay();
     }
 
     /**

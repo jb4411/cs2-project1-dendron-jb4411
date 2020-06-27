@@ -33,7 +33,7 @@ public class Variable implements ExpressionNode {
      */
     @Override
     public void infixDisplay() {
-
+        System.out.print(this.name);
     }
 
     /**

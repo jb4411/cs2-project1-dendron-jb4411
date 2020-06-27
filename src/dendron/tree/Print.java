@@ -30,7 +30,8 @@ public class Print implements ActionNode {
      */
     @Override
     public void execute(Map<String, Integer> symTab) {
-
+        System.out.print("=== ");
+        this.printee.evaluate(symTab);
     }
 
     /**
@@ -39,7 +40,9 @@ public class Print implements ActionNode {
      */
     @Override
     public void infixDisplay() {
-
+        System.out.print("Print ( ");
+        this.printee.infixDisplay();
+        System.out.print(" )");
     }
 
     /**
