@@ -2,6 +2,7 @@ package dendron.tree;
 
 import dendron.machine.Machine;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -47,6 +48,8 @@ public class Constant implements ExpressionNode {
      */
     @Override
     public List<Machine.Instruction> emit() {
-        return null;
+        List<Machine.Instruction> instructions = new ArrayList<>();
+        instructions.add(new Machine.PushConst(this.value));
+        return instructions;
     }
 }

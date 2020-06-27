@@ -98,6 +98,18 @@ public class BinaryOperation implements ExpressionNode {
      */
     @Override
     public List<Machine.Instruction> emit() {
-        return null;
+        List<Machine.Instruction> instructions = new ArrayList<>();
+        instructions.addAll(this.leftChild.emit());
+        instructions.addAll(this.rightChild.emit());
+        if (this.operator.equals(ADD)) {
+            instructions.add(new Machine.Add());
+        } else if (this.operator.equals(SUB)){
+            instructions.add(new Machine.Subtract());
+        } else if (this.operator.equals(MUL)){
+            instructions.add(new Machine.Multiply());
+        } else {
+            instructions.add(new Machine.Divide());
+        }
+        return instructions;
     }
 }

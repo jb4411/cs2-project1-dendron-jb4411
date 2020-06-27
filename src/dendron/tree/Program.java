@@ -74,6 +74,12 @@ public class Program implements ActionNode, DendronNode {
      */
     @Override
     public List<Machine.Instruction> emit() {
-        return null;
+        List<Machine.Instruction> instructions = new ArrayList<>();
+        ActionNode current;
+        while (!this.programs.isEmpty()) {
+            current = this.programs.removeFirst();
+            instructions.addAll(current.emit());
+        }
+        return instructions;
     }
 }

@@ -2,6 +2,7 @@ package dendron.tree;
 
 import dendron.machine.Machine;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -52,6 +53,9 @@ public class Print implements ActionNode {
      */
     @Override
     public List<Machine.Instruction> emit() {
-        return null;
+        List<Machine.Instruction> instructions = new ArrayList<>();
+        instructions.addAll(this.printee.emit());
+        instructions.add(new Machine.Print());
+        return instructions;
     }
 }

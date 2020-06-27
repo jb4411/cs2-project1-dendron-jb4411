@@ -130,7 +130,7 @@ public class ParseTree {
      * @see Machine.Instruction#execute()
      */
     public List< Machine.Instruction > compile() {
-        return null;
+        return this.root.emit();
     }
 
 }

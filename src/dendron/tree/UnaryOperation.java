@@ -70,6 +70,12 @@ public class UnaryOperation implements ExpressionNode {
      */
     @Override
     public List<Machine.Instruction> emit() {
-        return null;
+        List<Machine.Instruction> instructions = new ArrayList<>(this.expr.emit());
+        if (this.operator.equals(NEG)) {
+            instructions.add(new Machine.Negate());
+        } else {
+            instructions.add(new Machine.SquareRoot());
+        }
+        return instructions;
     }
 }

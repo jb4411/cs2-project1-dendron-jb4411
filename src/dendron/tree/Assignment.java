@@ -3,6 +3,7 @@ package dendron.tree;
 import dendron.machine.Machine;
 import dendron.Errors;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -65,6 +66,9 @@ public class Assignment implements ActionNode {
      */
     @Override
     public List<Machine.Instruction> emit() {
-        return null;
+        List<Machine.Instruction> instructions = new ArrayList<>();
+        instructions.addAll(this.rhs.emit());
+        instructions.add(new Machine.Store(this.ident));
+        return instructions;
     }
 }
