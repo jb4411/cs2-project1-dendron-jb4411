@@ -9,6 +9,7 @@ import dendron.tree.ActionNode;
 import dendron.tree.ExpressionNode;
 import dendron.tree.UnaryOperation;
 import dendron.tree.BinaryOperation;
+import dendron.Errors;
 
 import java.util.HashMap;
 import java.util.List;
@@ -65,6 +66,9 @@ public class ParseTree {
      */
     private ExpressionNode parseExpr( List< String > program ) {
         ExpressionNode result;
+        if (program.isEmpty()) {
+            Errors.report(Errors.Type.PREMATURE_END, null);
+        }
         String currentToken = program.remove(0);
         if (UnaryOperation.OPERATORS.contains(currentToken)) {
             result = new UnaryOperation(currentToken, parseExpr(program));

@@ -1,8 +1,13 @@
 package dendron.tree;
 
 import dendron.machine.Machine;
+import dendron.Errors;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
 
 /**
  * A calculation represented by a binary operator and its two operands.
@@ -56,7 +61,12 @@ public class BinaryOperation implements ExpressionNode {
         } else if (this.operator.equals(MUL)) {
             result = this.leftChild.evaluate(symTab) * this.rightChild.evaluate(symTab);
         } else {
-            result = this.leftChild.evaluate(symTab) * this.rightChild.evaluate(symTab);
+            int left = this.leftChild.evaluate(symTab);
+            int right = this.rightChild.evaluate(symTab);
+            if (right == 0) {
+                Errors.report(Errors.Type.DIVIDE_BY_ZERO,left + "/" + right);
+            }
+            result = left / right;
         }
 
         return result;

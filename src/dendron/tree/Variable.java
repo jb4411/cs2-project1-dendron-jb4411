@@ -1,6 +1,7 @@
 package dendron.tree;
 
 import dendron.machine.Machine;
+import dendron.Errors;
 
 import java.util.List;
 import java.util.Map;
@@ -25,7 +26,10 @@ public class Variable implements ExpressionNode {
      */
     @Override
     public int evaluate(Map<String, Integer> symTab) {
-        return 0;
+        if (!symTab.containsKey(this.name)) {
+            Errors.report(Errors.Type.UNINITIALIZED,this.name);
+        }
+        return symTab.get(this.name);
     }
 
     /**
