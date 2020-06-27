@@ -153,10 +153,10 @@ public class DendronTest {
 
         tree.interpret();
 
-        /*List< Machine.Instruction > program = tree.compile();
+        List< Machine.Instruction > program = tree.compile();
 
         Machine.displayInstructions( program );
 
-        Machine.execute( program );*/
+        Machine.execute( program );
     }
 }

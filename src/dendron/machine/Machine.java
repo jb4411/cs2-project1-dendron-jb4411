@@ -264,6 +264,15 @@ public class Machine {
             int op = stack.pop();
             System.out.println("*** " + op + " ");
         }
+
+        /**
+         * Show the PRINT instruction as plain text.
+         * @return "PRINT"
+         */
+        @Override
+        public String toString() {
+            return "PRINT";
+        }
     }
 
     /**
