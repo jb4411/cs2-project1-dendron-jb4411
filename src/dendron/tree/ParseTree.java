@@ -50,6 +50,9 @@ public class ParseTree {
     private ActionNode parseAction( List< String > program ) {
         ActionNode result;
         String currentToken = program.remove(0);
+        if (program.isEmpty()) {
+            Errors.report(Errors.Type.EXTRA_TOKENS, currentToken);
+        }
         if (currentToken.equals(":=")) {
             result = new Assignment(program.remove(0),parseExpr(program));
         } else {
@@ -91,6 +94,7 @@ public class ParseTree {
      * @see ActionNode#infixDisplay()
      */
     public void displayProgram() {
+        System.out.println("The Program, with expressions in infix notation:\n");
         this.root.infixDisplay();
     }
 
@@ -99,7 +103,24 @@ public class ParseTree {
      * @see ActionNode#execute(Map)
      */
     public void interpret() {
+        System.out.println("\nInterpreting the parse tree...");
         this.root.execute(symTab);
+        System.out.println("\nInterpretation complete.\n");
+
+        System.out.println("Symbol Table Contents\n=====================\n");
+
+        for (String var : symTab.keySet()) {
+            String output = var + " :        " + symTab.get(var);
+            if (var.length() < 12) {
+                StringBuilder temp = new StringBuilder("");
+                for (int i = 0; i < 12-var.length(); i++) {
+                    temp.append(" ");
+                }
+                output = temp + output;
+            }
+            System.out.println(output);
+        }
+        System.out.println("");
     }
 
     /**

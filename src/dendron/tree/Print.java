@@ -39,9 +39,8 @@ public class Print implements ActionNode {
      */
     @Override
     public void infixDisplay() {
-        System.out.print("Print ( ");
+        System.out.print("Print ");
         this.printee.infixDisplay();
-        System.out.print(" )");
     }
 
     /**

@@ -1,6 +1,7 @@
 package dendron.tree;
 
 import dendron.machine.Machine;
+import dendron.Errors;
 
 import java.util.List;
 import java.util.Map;
@@ -25,6 +26,9 @@ public class Assignment implements ActionNode {
      * assignment statement
      */
     public Assignment(String ident, ExpressionNode rhs) {
+        if (!ident.matches( "^[a-zA-Z].*" )) {
+            Errors.report(Errors.Type.ILLEGAL_VALUE, ident + " :=");
+        }
         this.ident = ident;
         this.rhs = rhs;
     }
