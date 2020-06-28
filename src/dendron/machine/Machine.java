@@ -159,6 +159,9 @@ public class Machine {
         public void execute() {
             int op2 = stack.pop();
             int op1 = stack.pop();
+            if (op2 == 0) {
+                Errors.report(Errors.Type.DIVIDE_BY_ZERO,op1 + "/" + op2);
+            }
             stack.push((int) op1 / op2 );
         }
 
@@ -192,6 +195,9 @@ public class Machine {
          */
         @Override
         public void execute() {
+            if (!table.containsKey(this.name)) {
+                Errors.report(Errors.Type.UNINITIALIZED,this.name);
+            }
             stack.push(table.get(this.name));
         }
 
