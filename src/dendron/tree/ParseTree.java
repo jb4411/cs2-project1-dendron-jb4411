@@ -82,6 +82,9 @@ public class ParseTree {
         } else if (currentToken.matches( "^[a-zA-Z].*" )){
             result = new Variable(currentToken);
         } else {
+            if (!currentToken.matches("[-+]?\\d+")) {
+                Errors.report(Errors.Type.ILLEGAL_VALUE, currentToken);
+            }
             int cons = Integer.parseInt(currentToken);
             result = new Constant(cons);
         }
