@@ -18,8 +18,6 @@ import java.util.Map;
 /**
  * Operations that are done on a Dendron code parse tree.
  *
- * THIS CLASS IS UNIMPLEMENTED. All methods are stubbed out.
- *
  * @author Jesse Burdick-Pless jb4411@g.rit.edu
  */
 public class ParseTree {
